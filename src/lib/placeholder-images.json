@@ -1,0 +1,52 @@
+{
+  "placeholderImages": [
+    {
+      "id": "hero-spices",
+      "description": "A vibrant array of colorful spices on a dark background",
+      "imageUrl": "https://images.unsplash.com/photo-1693823011512-a149ca51b1d8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8c3BpY2VzJTIwYmFja2dyb3VuZHxlbnwwfHx8fDE3Njc1MjIxNTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "spices background"
+    },
+    {
+      "id": "turmeric-powder",
+      "description": "A mound of bright golden turmeric powder",
+      "imageUrl": "https://images.unsplash.com/photo-1667889244329-7d34a4641a72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHx0dXJtZXJpYyUyMHBvd2RlcnxlbnwwfHx8fDE3Njc0MzU1Mjh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "turmeric powder"
+    },
+    {
+      "id": "chilli-powder",
+      "description": "A pile of vibrant red chilli powder",
+      "imageUrl": "https://images.unsplash.com/photo-1577563717655-919fc57789b4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjaGlsbGklMjBwb3dkZXJ8ZW58MHx8fHwxNzY3NDM1NTQ3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "chilli powder"
+    },
+    {
+      "id": "whole-spices",
+      "description": "A collection of various whole spices like cardamom and cloves",
+      "imageUrl": "https://images.unsplash.com/photo-1649952052743-5e8f37c348c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx3aG9sZSUyMHNwaWNlc3xlbnwwfHx8fDE3Njc1MjIxNTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "whole spices"
+    },
+    {
+      "id": "founder",
+      "description": "Professional portrait of the company founder",
+      "imageUrl": "https://images.unsplash.com/photo-1682703175805-58d01a7039a7?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "business portrait"
+    },
+    {
+      "id": "red-chili",
+      "description": "A close up of vibrant red chilies",
+      "imageUrl": "https://images.unsplash.com/photo-1567563185396-f99a5f45a552?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxyZWQlMjBjaGlsaXxlbnwwfDB8fHwxNzE5NDMyOTk0fDA",
+      "imageHint": "red chili"
+    },
+    {
+      "id": "spice-box",
+      "description": "A traditional Indian spice box (masala dabba) with various spices.",
+      "imageUrl": "https://images.unsplash.com/photo-1546702005-7f8e5aeab4a6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "indian spices"
+    },
+    {
+      "id": "company-logo",
+      "description": "Bandana Exports and General Trading logo",
+      "imageUrl": "/image/logo.png",
+      "imageHint": "company logo"
+    }
+  ]
+}
