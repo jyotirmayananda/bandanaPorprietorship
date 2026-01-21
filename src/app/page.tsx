@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import {
@@ -32,6 +34,8 @@ import {
   Star,
 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { motion } from "framer-motion";
+import { Plane, Ship, Container } from "lucide-react";
 
 export default function Home() {
   const heroImage = PlaceHolderImages.find((p) => p.id === "hero-spices");
@@ -61,180 +65,167 @@ export default function Home() {
     (p) => p.id === "testimonial-impact"
   );
 
+  const containerShipImage = PlaceHolderImages.find((p) => p.id === "container-ship");
+  const logisticsTruckImage = PlaceHolderImages.find((p) => p.id === "logistics-truck");
+  const cargoPlaneImage = PlaceHolderImages.find((p) => p.id === "cargo-plane");
+
   return (
     <div className="max-w-screen-2xl mx-auto shadow-2xl">
       <div className="bg-background/90 text-foreground">
         {/* Hero Section */}
         <section
-          className="relative py-20 md:py-32 bg-cover bg-center text-primary-foreground rounded-t-lg overflow-hidden"
+          className="relative py-24 md:py-40 bg-cover bg-center text-primary-foreground rounded-t-lg overflow-hidden"
           style={{ backgroundImage: `url(${heroImage?.imageUrl})` }}
         >
-          <div className="absolute inset-0 bg-black/60 z-0" />
-          <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
-            <h1 className="text-4xl md:text-6xl font-bold leading-tight mt-2 max-w-4xl mx-auto">
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70 z-0" />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="relative container mx-auto px-4 sm:px-6 lg:px-8 text-center z-10"
+          >
+            <motion.h1
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="text-5xl md:text-7xl font-bold leading-tight mt-2 max-w-5xl mx-auto bg-clip-text text-transparent bg-gradient-to-r from-white via-primary-foreground to-white/80"
+            >
               Empowering Odisha's Heritage, Delivering Authenticity Worldwide.
-            </h1>
-            <p className="mt-6 text-lg text-primary-foreground/90 max-w-3xl mx-auto">
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+              className="mt-8 text-xl text-primary-foreground/90 max-w-3xl mx-auto font-light"
+            >
               From farm-fresh spices to handcrafted treasures, we bridge
               Odisha's villages to global markets while uplifting rural women
               artisans.
-            </p>
-            <div className="mt-8 space-x-4">
-              <Button size="lg">Request Product Catalog</Button>
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+              className="mt-12 flex flex-wrap justify-center gap-6"
+            >
+              <Button size="lg" className="h-14 px-8 text-lg font-semibold shadow-xl hover:scale-105 transition-transform">
+                Request Product Catalog
+              </Button>
               <Button
                 size="lg"
                 variant="outline"
-                className="border-white text-primary hover:bg-white hover:text-primary"
+                className="h-14 px-8 text-lg font-semibold border-white text-white hover:bg-white hover:text-primary transition-all duration-300"
               >
                 Partner for Impact
               </Button>
+            </motion.div>
+          </motion.div>
+
+          {/* Scroll Indicator */}
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ repeat: Infinity, duration: 2 }}
+            className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 hidden md:block"
+          >
+            <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center pt-2">
+              <div className="w-1 h-2 bg-white rounded-full" />
             </div>
-          </div>
+          </motion.div>
         </section>
 
         {/* Mission/Vision Section */}
-        <section id="about" className="py-20">
-          <div className="container mx-auto text-center">
-            <h2 className="text-4xl font-bold">
+        <section id="about" className="py-24">
+          <div className="container mx-auto text-center px-4">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-4xl md:text-5xl font-bold"
+            >
               Bandana Exports: More Than a Trading Company
-            </h2>
-            <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="text-muted-foreground mt-6 text-lg max-w-2xl mx-auto"
+            >
               We are a social enterprise dedicated to:
-            </p>
-            <div className="grid md:grid-cols-4 gap-8 mt-12 text-center">
-              <div className="flex flex-col items-center">
-                <div className="bg-primary/10 p-4 rounded-full mb-4 transition-transform hover:scale-110">
-                  <Globe className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="font-bold text-lg">Exporting Authenticity</h3>
-                <p className="text-muted-foreground text-sm">
-                  Exporting authentic Odisha products worldwide.
-                </p>
-              </div>
-              <div className="flex flex-col items-center">
-                <div className="bg-primary/10 p-4 rounded-full mb-4 transition-transform hover:scale-110">
-                  <Users className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="font-bold text-lg">Empowering Women</h3>
-                <p className="text-muted-foreground text-sm">
-                  Empowering rural women through sustainable livelihoods.
-                </p>
-              </div>
-              <div className="flex flex-col items-center">
-                <div className="bg-primary/10 p-4 rounded-full mb-4 transition-transform hover:scale-110">
-                  <Sparkles className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="font-bold text-lg">Preserving Crafts</h3>
-                <p className="text-muted-foreground text-sm">
-                  Preserving traditional crafts and recipes.
-                </p>
-              </div>
-              <div className="flex flex-col items-center">
-                <div className="bg-primary/10 p-4 rounded-full mb-4 transition-transform hover:scale-110">
-                  <Link className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="font-bold text-lg">Ethical Supply Chains</h3>
-                <p className="text-muted-foreground text-sm">
-                  Building ethical supply chains from village to global market.
-                </p>
-              </div>
+            </motion.p>
+            <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-12 mt-16 text-center">
+              {[
+                { icon: Globe, title: "Exporting Authenticity", text: "Exporting authentic Odisha products worldwide." },
+                { icon: Users, title: "Empowering Women", text: "Empowering rural women through sustainable livelihoods." },
+                { icon: Sparkles, title: "Preserving Crafts", text: "Preserving traditional crafts and recipes." },
+                { icon: Link, title: "Ethical Supply Chains", text: "Building ethical supply chains from village to global market." }
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                  className="flex flex-col items-center group"
+                >
+                  <div className="bg-primary/10 p-6 rounded-2xl mb-6 transition-all duration-300 group-hover:bg-primary group-hover:text-white group-hover:scale-110 group-hover:rotate-3 shadow-lg group-hover:shadow-primary/20">
+                    <item.icon className="h-10 w-10 transition-colors" />
+                  </div>
+                  <h3 className="font-bold text-xl mb-3">{item.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    {item.text}
+                  </p>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
 
         {/* Expanded Product Categories Section */}
-        <section id="products" className="py-20 bg-secondary/20">
-          <div className="container mx-auto text-center">
-            <h2 className="text-4xl font-bold">Our Products</h2>
-            <div className="grid md:grid-cols-4 gap-8 mt-12 text-left">
-              <Card className="transition-transform duration-300 hover:scale-105">
-                {spicesImage && (
-                  <div className="relative h-48">
-                    <Image
-                      src={spicesImage.imageUrl}
-                      alt={spicesImage.description}
-                      fill
-                      className="object-cover rounded-t-lg"
-                      data-ai-hint={spicesImage.imageHint}
-                    />
-                  </div>
-                )}
-                <CardHeader>
-                  <CardTitle>Premium Spices & Masalas</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">
-                    Organic farm-to-table spices, traditional Odisha masala
-                    blends, and custom industrial spice mixes.
-                  </p>
-                </CardContent>
-              </Card>
-              <Card className="transition-transform duration-300 hover:scale-105">
-                {textilesImage && (
-                  <div className="relative h-48">
-                    <Image
-                      src={textilesImage.imageUrl}
-                      alt={textilesImage.description}
-                      fill
-                      className="object-cover rounded-t-lg"
-                      data-ai-hint={textilesImage.imageHint}
-                    />
-                  </div>
-                )}
-                <CardHeader>
-                  <CardTitle>Handcrafted Textiles</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">
-                    Handloom sarees (Sambalpuri, Bomkai, Kotpad), tribal craft
-                    textiles, and natural dyed fabrics.
-                  </p>
-                </CardContent>
-              </Card>
-              <Card className="transition-transform duration-300 hover:scale-105">
-                {foodImage && (
-                  <div className="relative h-48">
-                    <Image
-                      src={foodImage.imageUrl}
-                      alt={foodImage.description}
-                      fill
-                      className="object-cover rounded-t-lg"
-                      data-ai-hint={foodImage.imageHint}
-                    />
-                  </div>
-                )}
-                <CardHeader>
-                  <CardTitle>Homemade Food Products</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">
-                    Traditional Odisha sweets (Pitha, Chhena Poda), pickles &
-                    preserves, and rice-based products.
-                  </p>
-                </CardContent>
-              </Card>
-              <Card className="transition-transform duration-300 hover:scale-105">
-                {craftsImage && (
-                  <div className="relative h-48">
-                    <Image
-                      src={craftsImage.imageUrl}
-                      alt={craftsImage.description}
-                      fill
-                      className="object-cover rounded-t-lg"
-                      data-ai-hint={craftsImage.imageHint}
-                    />
-                  </div>
-                )}
-                <CardHeader>
-                  <CardTitle>Artisanal Crafts</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">
-                    Dhokra metal craft, Pattachitra paintings, palm leaf
-                    engravings, and terracotta pottery.
-                  </p>
-                </CardContent>
-              </Card>
+        <section id="products" className="py-24 bg-stone-50 dark:bg-stone-900/50">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold">Our Curated Collections</h2>
+              <p className="text-muted-foreground mt-4">Discover the finest artisanal creations from the heart of Odisha</p>
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 text-left">
+              {[
+                { title: "Premium Spices", img: spicesImage, desc: "Organic farm-to-table spices and traditional blends." },
+                { title: "Handcrafted Textiles", img: textilesImage, desc: "Authentic handloom sarees and natural dyed fabrics." },
+                { title: "Homemade Delights", img: foodImage, desc: "Traditional Odisha sweets, pickles and preserves." },
+                { title: "Artisanal Crafts", img: craftsImage, desc: "Dhokra metal craft and Pattachitra paintings." }
+              ].map((product, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: i * 0.1 }}
+                >
+                  <Card className="h-full overflow-hidden border-none shadow-xl hover:shadow-2xl transition-all duration-500 group">
+                    {product.img && (
+                      <div className="relative h-64 overflow-hidden">
+                        <Image
+                          src={product.img.imageUrl}
+                          alt={product.img.description}
+                          fill
+                          className="object-cover transition-transform duration-700 group-hover:scale-110"
+                          data-ai-hint={product.img.imageHint}
+                        />
+                        <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500" />
+                      </div>
+                    )}
+                    <CardHeader>
+                      <CardTitle className="group-hover:text-primary transition-colors">{product.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        {product.desc}
+                      </p>
+                      <Button variant="link" className="px-0 mt-4 h-auto text-primary group-hover:gap-2 transition-all">
+                        Explore Collection <Link className="h-3 w-3" />
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
@@ -259,8 +250,12 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-12 items-center mt-16">
-              <div className="relative h-96 rounded-lg overflow-hidden shadow-lg">
+            <div className="grid md:grid-cols-2 gap-16 items-center mt-20">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl"
+              >
                 {womenArtisansImage && (
                   <Image
                     src={womenArtisansImage.imageUrl}
@@ -270,73 +265,42 @@ export default function Home() {
                     data-ai-hint={womenArtisansImage.imageHint}
                   />
                 )}
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold mb-6">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                <div className="absolute bottom-8 left-8">
+                  <p className="text-white text-lg font-medium italic">"Every product tells a story of generations."</p>
+                </div>
+              </motion.div>
+              <div className="space-y-8">
+                <h3 className="text-3xl font-bold mb-8">
                   The Journey of Homemade Goodness
                 </h3>
-                <ul className="space-y-4">
-                  <li className="flex items-start gap-4">
-                    <div className="bg-primary/10 p-2 rounded-full mt-1">
-                      <Sparkles className="h-5 w-5 text-primary" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold">Garden Fresh</h4>
-                      <p className="text-muted-foreground text-sm">
-                        Women picking fresh vegetables from their own backyard
-                        gardens.
-                      </p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-4">
-                    <div className="bg-primary/10 p-2 rounded-full mt-1">
-                      <Sun className="h-5 w-5 text-primary" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold">Traditional Prep</h4>
-                      <p className="text-muted-foreground text-sm">
-                        Washing, cutting, and sun-drying ingredients on
-                        traditional bamboo mats.
-                      </p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-4">
-                    <div className="bg-primary/10 p-2 rounded-full mt-1">
-                      <Hand className="h-5 w-5 text-primary" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold">Hand Crafting</h4>
-                      <p className="text-muted-foreground text-sm">
-                        Mixing and preparing in traditional earthen pots,
-                        following age-old recipes.
-                      </p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-4">
-                    <div className="bg-primary/10 p-2 rounded-full mt-1">
-                      <CheckCircle className="h-5 w-5 text-primary" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold">Quality Check</h4>
-                      <p className="text-muted-foreground text-sm">
-                        Tasting and adjusting flavors, led by the experienced
-                        elders of the community.
-                      </p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-4">
-                    <div className="bg-primary/10 p-2 rounded-full mt-1">
-                      <Package className="h-5 w-5 text-primary" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold">Home Packaging</h4>
-                      <p className="text-muted-foreground text-sm">
-                        Lovingly filling and sealing jars in clean home
-                        kitchens, ready for your table.
-                      </p>
-                    </div>
-                  </li>
-                </ul>
+                <div className="space-y-6">
+                  {[
+                    { icon: Sparkles, title: "Garden Fresh", desc: "Women picking fresh vegetables from their own backyard gardens." },
+                    { icon: Sun, title: "Traditional Prep", desc: "Washing, cutting, and sun-drying ingredients on traditional bamboo mats." },
+                    { icon: Hand, title: "Hand Crafting", desc: "Mixing and preparing in traditional earthen pots, following age-old recipes." },
+                    { icon: CheckCircle, title: "Quality Check", desc: "Tasting and adjusting flavors, led by the experienced elders." },
+                    { icon: Package, title: "Home Packaging", desc: "Lovingly filling and sealing jars in clean home kitchens." }
+                  ].map((step, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, x: 30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.1 }}
+                      className="flex items-start gap-5 p-4 rounded-2xl hover:bg-white dark:hover:bg-slate-800 transition-colors shadow-sm hover:shadow-md"
+                    >
+                      <div className="bg-primary/10 p-3 rounded-xl mt-1 group-hover:bg-primary group-hover:text-white transition-colors">
+                        <step.icon className="h-6 w-6 text-primary" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-lg">{step.title}</h4>
+                        <p className="text-muted-foreground text-sm leading-relaxed">
+                          {step.desc}
+                        </p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -417,34 +381,29 @@ export default function Home() {
         </section>
 
         {/* Impact Metrics Section */}
-        <section className="py-20 bg-primary text-primary-foreground">
-          <div className="container mx-auto">
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-8 text-center">
-              <div className="flex flex-col items-center">
-                <Users className="h-10 w-10 mb-2" />
-                <p className="text-2xl font-bold">250+</p>
-                <p>Rural Women Artisans Supported</p>
-              </div>
-              <div className="flex flex-col items-center">
-                <Globe className="h-10 w-10 mb-2" />
-                <p className="text-2xl font-bold">12+</p>
-                <p>Countries Exported To</p>
-              </div>
-              <div className="flex flex-col items-center">
-                <Sparkles className="h-10 w-10 mb-2" />
-                <p className="text-2xl font-bold">15+</p>
-                <p>Traditional Crafts Preserved</p>
-              </div>
-              <div className="flex flex-col items-center">
-                <TrendingUp className="h-10 w-10 mb-2" />
-                <p className="text-2xl font-bold">₹2.5Cr+</p>
-                <p>Generated in Artisan Income</p>
-              </div>
-              <div className="flex flex-col items-center col-span-2 md:col-span-1">
-                <Award className="h-10 w-10 mb-2" />
-                <p className="text-2xl font-bold">500+</p>
-                <p>Women Trained in Quality Production</p>
-              </div>
+        <section className="py-24 bg-primary text-primary-foreground relative overflow-hidden">
+          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 pointer-events-none" />
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-12 text-center">
+              {[
+                { icon: Users, val: "250+", label: "Rural Women Artisans" },
+                { icon: Globe, val: "12+", label: "Export Destinations" },
+                { icon: Sparkles, val: "15+", label: "Traditional Crafts" },
+                { icon: TrendingUp, val: "₹2.5Cr+", label: "Artisan Income" },
+                { icon: Award, val: "500+", label: "Women Trained" }
+              ].map((metric, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: i * 0.1, duration: 0.5 }}
+                  className="flex flex-col items-center"
+                >
+                  <metric.icon className="h-12 w-12 mb-4 text-white/80" />
+                  <p className="text-4xl font-extrabold mb-2 font-mono tracking-tighter">{metric.val}</p>
+                  <p className="text-sm font-medium text-primary-foreground/80 uppercase tracking-widest">{metric.label}</p>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
@@ -537,170 +496,229 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Expanded Services Section */}
-        <section id="services" className="py-20">
-          <div className="container mx-auto text-center">
-            <p className="text-primary font-semibold">OUR SERVICES</p>
-            <h2 className="text-4xl font-bold mt-2">
-              How We Can Work Together
-            </h2>
-            <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-8 mt-12">
-              <div className="flex flex-col items-center text-center">
-                <div className="p-4 bg-primary/10 rounded-full mb-4 transition-transform hover:scale-110">
-                  <Truck className="h-10 w-10 text-primary" />
+        {/* Logistics Services Section */}
+        <section id="logistics" className="py-24 bg-slate-50 dark:bg-slate-900/50">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                className="text-primary font-bold tracking-widest uppercase text-sm"
+              >
+                Global Logistics Solutions
+              </motion.p>
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                className="text-4xl md:text-5xl font-bold mt-4"
+              >
+                Seamless Cargo Delivery
+              </motion.h2>
+              <div className="w-24 h-1 bg-primary mx-auto mt-6 rounded-full" />
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-10">
+              <motion.div
+                whileHover={{ y: -10 }}
+                className="group relative overflow-hidden rounded-2xl shadow-lg bg-white dark:bg-slate-800 transition-all duration-300 border border-slate-100 dark:border-slate-700"
+              >
+                <div className="relative h-64 overflow-hidden">
+                  <Image
+                    src={containerShipImage?.imageUrl || ""}
+                    alt="Container Shipping"
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
+                    <Container className="text-primary h-12 w-12 mb-2" />
+                    <h3 className="text-2xl font-bold text-white">Sea Freight</h3>
+                  </div>
                 </div>
-                <h3 className="font-bold">Export Services</h3>
-                <p className="text-muted-foreground text-sm">
-                  Customs clearance, documentation, logistics.
-                </p>
-              </div>
-              <div className="flex flex-col items-center text-center">
-                <div className="p-4 bg-primary/10 rounded-full mb-4 transition-transform hover:scale-110">
+                <div className="p-8">
+                  <p className="text-muted-foreground leading-relaxed">
+                    Full Container Load (FCL) and Less than Container Load (LCL) services across global shipping lanes. We ensure your heritage products reach their destination safely.
+                  </p>
+                  <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+                    <li className="flex items-center gap-2"><CheckCircle className="h-4 w-4 text-primary" /> Global Port Coverage</li>
+                    <li className="flex items-center gap-2"><CheckCircle className="h-4 w-4 text-primary" /> Real-time Tracking</li>
+                  </ul>
+                </div>
+              </motion.div>
+
+              <motion.div
+                whileHover={{ y: -10 }}
+                className="group relative overflow-hidden rounded-2xl shadow-lg bg-white dark:bg-slate-800 transition-all duration-300 border border-slate-100 dark:border-slate-700"
+              >
+                <div className="relative h-64 overflow-hidden">
+                  <Image
+                    src={logisticsTruckImage?.imageUrl || ""}
+                    alt="Truck Transport"
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
+                    <Truck className="text-primary h-12 w-12 mb-2" />
+                    <h3 className="text-2xl font-bold text-white">Road Transport</h3>
+                  </div>
+                </div>
+                <div className="p-8">
+                  <p className="text-muted-foreground leading-relaxed">
+                    Extensive trucking network for domestic and cross-border delivery. From village collection to central hubs, we manage the entire road network.
+                  </p>
+                  <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+                    <li className="flex items-center gap-2"><CheckCircle className="h-4 w-4 text-primary" /> Door-to-Door Delivery</li>
+                    <li className="flex items-center gap-2"><CheckCircle className="h-4 w-4 text-primary" /> Temperature Controlled</li>
+                  </ul>
+                </div>
+              </motion.div>
+
+              <motion.div
+                whileHover={{ y: -10 }}
+                className="group relative overflow-hidden rounded-2xl shadow-lg bg-white dark:bg-slate-800 transition-all duration-300 border border-slate-100 dark:border-slate-700"
+              >
+                <div className="relative h-64 overflow-hidden">
+                  <Image
+                    src={cargoPlaneImage?.imageUrl || ""}
+                    alt="Aircraft Freight"
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
+                    <Plane className="text-primary h-12 w-12 mb-2 scale-x-[-1]" />
+                    <h3 className="text-2xl font-bold text-white">Air Freight</h3>
+                  </div>
+                </div>
+                <div className="p-8">
+                  <p className="text-muted-foreground leading-relaxed">
+                    Express air cargo services for time-sensitive deliveries. Rapid transit for perishable food items and high-value crafts to global hubs.
+                  </p>
+                  <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+                    <li className="flex items-center gap-2"><CheckCircle className="h-4 w-4 text-primary" /> Express Shipping</li>
+                    <li className="flex items-center gap-2"><CheckCircle className="h-4 w-4 text-primary" /> Customs Expertise</li>
+                  </ul>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* Other Services Section */}
+        <section id="services" className="py-24">
+          <div className="container mx-auto px-4 text-center">
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              className="text-primary font-bold tracking-widest uppercase text-sm"
+            >
+              Beyond Logistics
+            </motion.p>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="text-4xl font-bold mt-4"
+            >
+              How We Support Our Partners
+            </motion.h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                className="p-8 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 transition-all"
+              >
+                <div className="p-4 bg-primary/10 rounded-xl inline-block mb-6">
                   <Package className="h-10 w-10 text-primary" />
                 </div>
-                <h3 className="font-bold">Private Labeling</h3>
+                <h3 className="text-xl font-bold mb-4">Private Labeling</h3>
                 <p className="text-muted-foreground text-sm">
-                  Custom branding for all product categories.
+                  Full custom branding solutions. We help you launch your own brand featuring Odisha's finest products.
                 </p>
-              </div>
-              <div className="flex flex-col items-center text-center">
-                <div className="p-4 bg-primary/10 rounded-full mb-4 transition-transform hover:scale-110">
+              </motion.div>
+
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                className="p-8 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 transition-all"
+              >
+                <div className="p-4 bg-primary/10 rounded-xl inline-block mb-6">
                   <Handshake className="h-10 w-10 text-primary" />
                 </div>
-                <h3 className="font-bold">Artisan Connect</h3>
+                <h3 className="text-xl font-bold mb-4">Artisan Network</h3>
                 <p className="text-muted-foreground text-sm">
-                  Direct buyer-artisan interaction programs.
+                  Direct access to over 250+ certified artisans. Transparent sourcing and deep cultural connections.
                 </p>
-              </div>
-              <div className="flex flex-col items-center text-center">
-                <div className="p-4 bg-primary/10 rounded-full mb-4 transition-transform hover:scale-110">
+              </motion.div>
+
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                className="p-8 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 transition-all"
+              >
+                <div className="p-4 bg-primary/10 rounded-xl inline-block mb-6">
                   <Camera className="h-10 w-10 text-primary" />
                 </div>
-                <h3 className="font-bold">Cultural Experiences</h3>
+                <h3 className="text-xl font-bold mb-4">Visual Storytelling</h3>
                 <p className="text-muted-foreground text-sm">
-                  Virtual tours of artisan villages.
+                  High-quality media assets and village narratives to help you market the impact behind every product.
                 </p>
-              </div>
-              <div className="flex flex-col items-center text-center">
-                <div className="p-4 bg-primary/10 rounded-full mb-4 transition-transform hover:scale-110">
+              </motion.div>
+
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                className="p-8 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 transition-all"
+              >
+                <div className="p-4 bg-primary/10 rounded-xl inline-block mb-6">
                   <Warehouse className="h-10 w-10 text-primary" />
                 </div>
-                <h3 className="font-bold">Bulk Orders</h3>
+                <h3 className="text-xl font-bold mb-4">Bulk Procurement</h3>
                 <p className="text-muted-foreground text-sm">
-                  Institutional supply for hotels, restaurants, retailers.
+                  Efficient supply for hotels, resorts, and international retailers with strict quality control.
                 </p>
-              </div>
-            </div>
-            <div className="mt-12">
-              <Button size="lg">Source Ethically</Button>
+              </motion.div>
             </div>
           </div>
         </section>
 
         {/* Testimonials Section */}
-        <section id="testimonials" className="py-20 bg-secondary/20">
-          <div className="container mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-12">
+        <section id="testimonials" className="py-24 bg-stone-50 dark:bg-stone-900/50">
+          <div className="container mx-auto px-4">
+            <h2 className="text-4xl font-bold text-center mb-16">
               Voices from Our Community
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              <Card>
-                <CardContent className="pt-6">
-                  <div className="flex items-center mb-4">
-                    {testimonialBuyer && (
-                      <Avatar className="h-12 w-12 mr-4">
-                        <AvatarImage
-                          src={testimonialBuyer.imageUrl}
-                          alt="International Buyer"
-                        />
-                        <AvatarFallback>IB</AvatarFallback>
-                      </Avatar>
-                    )}
-                    <div>
-                      <CardTitle className="text-base">
-                        Sophia, Germany
-                      </CardTitle>
-                      <CardDescription>International Buyer</CardDescription>
-                    </div>
-                  </div>
-                  <p className="text-sm text-muted-foreground italic">
-                    "The quality of spices is unparalleled. Our customers can
-                    taste the authenticity. Knowing it supports women artisans
-                    makes it even better."
-                  </p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="pt-6">
-                  <div className="flex items-center mb-4">
-                    {testimonialArtisan && (
-                      <Avatar className="h-12 w-12 mr-4">
-                        <AvatarImage
-                          src={testimonialArtisan.imageUrl}
-                          alt="Artisan"
-                        />
-                        <AvatarFallback>AS</AvatarFallback>
-                      </Avatar>
-                    )}
-                    <div>
-                      <CardTitle className="text-base">Sita Devi</CardTitle>
-                      <CardDescription>Dhokra Artisan</CardDescription>
-                    </div>
-                  </div>
-                  <p className="text-sm text-muted-foreground italic">
-                    "Working with Bandana Exports changed my life. I can send my
-                    children to school now. My craft is respected."
-                  </p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="pt-6">
-                  <div className="flex items-center mb-4">
-                    {testimonialPartner && (
-                      <Avatar className="h-12 w-12 mr-4">
-                        <AvatarImage
-                          src={testimonialPartner.imageUrl}
-                          alt="Retail Partner"
-                        />
-                        <AvatarFallback>RP</AvatarFallback>
-                      </Avatar>
-                    )}
-                    <div>
-                      <CardTitle className="text-base">David Chen</CardTitle>
-                      <CardDescription>Retail Partner, USA</CardDescription>
-                    </div>
-                  </div>
-                  <p className="text-sm text-muted-foreground italic">
-                    "Our collaboration has been seamless. The private labeling
-                    service is excellent and our customers love the artisan
-                    stories behind the products."
-                  </p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="pt-6">
-                  <div className="flex items-center mb-4">
-                    {testimonialImpact && (
-                      <Avatar className="h-12 w-12 mr-4">
-                        <AvatarImage
-                          src={testimonialImpact.imageUrl}
-                          alt="Impact Org"
-                        />
-                        <AvatarFallback>IO</AvatarFallback>
-                      </Avatar>
-                    )}
-                    <div>
-                      <CardTitle className="text-base">ImpactFirst</CardTitle>
-                      <CardDescription>Social Impact Org</CardDescription>
-                    </div>
-                  </div>
-                  <p className="text-sm text-muted-foreground italic">
-                    "Bandana Exports is a model for social enterprise. Their
-                    commitment to fair trade and community empowerment is truly
-                    commendable."
-                  </p>
-                </CardContent>
-              </Card>
+              {[
+                { name: "Sophia", role: "International Buyer", country: "Germany", text: "The quality of spices is unparalleled. Our customers can taste the authenticity. Knowing it supports women artisans makes it even better.", img: testimonialBuyer },
+                { name: "Sita Devi", role: "Dhokra Artisan", country: "Odisha", text: "Working with Bandana Exports changed my life. I can send my children to school now. My craft is respected.", img: testimonialArtisan },
+                { name: "David Chen", role: "Retail Partner", country: "USA", text: "Our collaboration has been seamless. The private labeling service is excellent and our customers love the stories behind products.", img: testimonialPartner },
+                { name: "ImpactFirst", role: "Social Impact Org", country: "Global", text: "Bandana Exports is a model for social enterprise. Their commitment to fair trade and community empowerment is truly commendable.", img: testimonialImpact }
+              ].map((t, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                >
+                  <Card className="h-full border-none shadow-lg hover:shadow-2xl transition-all duration-300">
+                    <CardContent className="pt-8">
+                      <Star className="h-5 w-5 text-primary fill-primary mb-6" />
+                      <p className="text-muted-foreground italic mb-8 leading-relaxed">
+                        "{t.text}"
+                      </p>
+                      <div className="flex items-center">
+                        {t.img && (
+                          <Avatar className="h-12 w-12 mr-4 border-2 border-primary/20">
+                            <AvatarImage
+                              src={t.img.imageUrl}
+                              alt={t.name}
+                            />
+                            <AvatarFallback>{t.name[0]}</AvatarFallback>
+                          </Avatar>
+                        )}
+                        <div>
+                          <CardTitle className="text-base">{t.name}</CardTitle>
+                          <CardDescription>{t.role}, {t.country}</CardDescription>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
